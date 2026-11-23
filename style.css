@@ -1,0 +1,1222 @@
+
+/* ==========================================
+   AURELIA — PREMIUM EYEWEAR EXPERIENCE
+========================================== */
+
+:root {
+    --bg: #262521;
+    --bg-soft: #34312b;
+    --card: #3a352e;
+    --text: #f0e8dc;
+    --muted: #b7aa97;
+    --gold: #c0a16c;
+    --gold-light: #dfc48e;
+    --line: rgba(224, 208, 180, 0.16);
+    --white: #f7f2e9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.site-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* LOADER */
+
+#loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #262521;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loader span {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    letter-spacing: 9px;
+    color: #f0e8dc;
+}
+
+.loader-line {
+    width: 100px;
+    height: 1px;
+    background: #554b3c;
+    overflow: hidden;
+    position: relative;
+}
+
+.loader-line::after {
+    content: "";
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gold);
+    animation: loading 1.4s ease infinite;
+}
+
+#loader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes loading {
+    to {
+        left: 100%;
+    }
+}
+
+/* NAVBAR */
+
+.navbar {
+    height: 88px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    z-index: 10;
+    background: rgba(38, 37, 33, 0.85);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    letter-spacing: 4px;
+    color: var(--white);
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 42px;
+}
+
+.nav-links a {
+    color: #c1b5a3;
+    font-size: 12px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--gold-light);
+}
+
+.nav-cta {
+    border: 1px solid rgba(192, 161, 108, 0.45);
+    padding: 13px 20px;
+    color: var(--white);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    transition: 0.3s;
+}
+
+.nav-cta span {
+    color: var(--gold);
+    margin-left: 12px;
+}
+
+.nav-cta:hover {
+    background: var(--gold);
+    color: #262521;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 740px;
+    height: calc(100vh - 88px);
+    max-height: 950px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 7%;
+    background:
+        radial-gradient(
+            ellipse at 74% 50%,
+            rgba(172, 140, 92, 0.12),
+            transparent 42%
+        ),
+        #262521;
+}
+
+.hero-content {
+    width: 47%;
+    position: relative;
+    z-index: 3;
+    margin-top: -30px;
+}
+
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #b9a98d;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+.eyebrow-line {
+    height: 1px;
+    width: 35px;
+    background: var(--gold);
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(72px, 8.4vw, 122px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -4px;
+    margin: 35px 0 28px;
+    color: #f0e8dc;
+}
+
+.hero h1 span {
+    color: #c0a16c;
+    font-style: italic;
+}
+
+.hero-description {
+    color: #b9b0a2;
+    max-width: 400px;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.discover-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    margin-top: 38px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid var(--gold);
+    color: #e8dece;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    transition: 0.3s;
+}
+
+.discover-btn span {
+    color: var(--gold-light);
+    font-size: 17px;
+    transition: transform 0.3s;
+}
+
+.discover-btn:hover span {
+    transform: translate(5px, -4px);
+}
+
+/* THREE.JS SCENE */
+
+.hero-3d {
+    position: absolute;
+    width: 58%;
+    height: 82%;
+    right: -2%;
+    top: 8%;
+    z-index: 1;
+}
+
+#scene-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.scene-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.scene-fallback span {
+    font-family: 'Playfair Display', serif;
+    color: rgba(220, 195, 157, 0.04);
+    font-size: 100px;
+    letter-spacing: 12px;
+}
+
+/* HERO FOOTER */
+
+.hero-bottom {
+    position: absolute;
+    bottom: 32px;
+    left: 7%;
+    right: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 4;
+    font-size: 9px;
+    letter-spacing: 1.6px;
+    color: #988d7b;
+}
+
+.hero-index {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.index-line {
+    width: 55px;
+    height: 1px;
+    background: var(--gold);
+}
+
+.scroll-indicator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.scroll-indicator span {
+    color: var(--gold-light);
+    font-size: 17px;
+}
+
+/* COLLECTION */
+
+.collection {
+    padding: 130px 7%;
+    background: #302e29;
+    border-top: 1px solid var(--line);
+}
+
+.section-heading {
+    text-align: center;
+}
+
+.section-heading .eyebrow {
+    justify-content: center;
+}
+
+.section-heading h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 70px);
+    font-weight: 400;
+    margin: 24px 0 14px;
+    color: #f0e8dc;
+}
+
+.section-heading h2 span {
+    color: var(--gold-light);
+    font-style: italic;
+}
+
+.section-heading > p:last-child {
+    font-size: 13px;
+    color: #b7aa97;
+}
+
+/* COLLECTION GRID */
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 65px;
+}
+
+.collection-card {
+    min-width: 0;
+    transition: transform 0.4s ease;
+}
+
+.collection-card:hover {
+    transform: translateY(-7px);
+}
+
+.card-visual {
+    height: 380px;
+    position: relative;
+    overflow: hidden;
+    background: #494238;
+}
+
+.collection-card:nth-child(2) .card-visual {
+    background: #403b33;
+}
+
+.collection-card:nth-child(3) .card-visual {
+    background: #51483b;
+}
+
+.card-visual span {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    color: #c4b08b;
+    font-size: 10px;
+    letter-spacing: 2px;
+    z-index: 2;
+}
+
+.collection-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    font-weight: 400;
+    color: #f0e8dc;
+    margin-top: 24px;
+}
+
+.collection-card > p {
+    color: #b7aa97;
+    font-size: 12px;
+    line-height: 1.8;
+    margin-top: 9px;
+}
+
+/* CRAFTSMANSHIP */
+
+.craftsmanship {
+    padding: 130px 7%;
+    background: #262521;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 70px;
+}
+
+.craft-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(58px, 6vw, 88px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin: 30px 0;
+    color: #f0e8dc;
+}
+
+.craft-content h2 span {
+    color: var(--gold-light);
+    font-style: italic;
+}
+
+.craft-content > p:not(.eyebrow) {
+    color: #b7aa97;
+    max-width: 430px;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.craft-visual {
+    height: 470px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.craft-circle {
+    width: 340px;
+    height: 340px;
+    border: 1px solid rgba(192, 161, 108, 0.4);
+    border-radius: 50%;
+    position: relative;
+}
+
+.craft-circle::before {
+    content: "";
+    position: absolute;
+    inset: 25px;
+    border: 1px solid rgba(192, 161, 108, 0.2);
+    border-radius: 50%;
+}
+
+.craft-circle::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--gold-light);
+    border-radius: 50%;
+    top: 20%;
+    right: 15%;
+    box-shadow: 0 0 25px rgba(192, 161, 108, 0.5);
+}
+
+.craft-label {
+    position: absolute;
+    font-size: 10px;
+    letter-spacing: 3px;
+    line-height: 2;
+    color: #b9a98d;
+    text-align: center;
+}
+
+/* ABOUT */
+
+.about {
+    padding: 150px 7%;
+    text-align: center;
+    background: #302e29;
+    border-top: 1px solid var(--line);
+}
+
+.about .eyebrow {
+    justify-content: center;
+}
+
+.about h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 68px);
+    line-height: 1.35;
+    margin: 35px 0;
+    color: #f0e8dc;
+}
+
+.about h2 span {
+    color: var(--gold-light);
+    font-style: italic;
+}
+
+.about > p:last-child {
+    max-width: 550px;
+    margin: auto;
+    font-size: 14px;
+    line-height: 2;
+    color: #b7aa97;
+}
+
+/* FOOTER */
+
+.footer {
+    min-height: 105px;
+    padding: 30px 7%;
+    border-top: 1px solid var(--line);
+    background: #262521;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer > p,
+.footer > span {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #a99d8a;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+    .hero {
+        min-height: 700px;
+    }
+
+    .hero-content {
+        width: 55%;
+    }
+
+    .hero h1 {
+        font-size: 82px;
+    }
+
+    .hero-3d {
+        width: 60%;
+    }
+
+    .collection-grid {
+        gap: 15px;
+    }
+
+    .card-visual {
+        height: 290px;
+    }
+
+    .craftsmanship {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .navbar {
+        height: 75px;
+        padding: 0 5%;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-cta {
+        font-size: 9px;
+        padding: 10px 12px;
+    }
+
+    .hero {
+        height: auto;
+        min-height: 760px;
+        max-height: none;
+        padding: 75px 6% 100px;
+        align-items: flex-start;
+    }
+
+    .hero-content {
+        width: 100%;
+        margin: 0;
+    }
+
+    .hero h1 {
+        font-size: 72px;
+        margin: 28px 0 20px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+        max-width: 330px;
+    }
+
+    .hero-3d {
+        width: 100%;
+        height: 400px;
+        top: 310px;
+        right: -5%;
+    }
+
+    .hero-bottom {
+        bottom: 25px;
+        left: 6%;
+        right: 6%;
+    }
+
+    .hero-bottom > p {
+        display: none;
+    }
+
+    .collection {
+        padding: 90px 6%;
+    }
+
+    .section-heading h2 {
+        font-size: 43px;
+    }
+
+    .collection-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+        margin-top: 50px;
+    }
+
+    .card-visual {
+        height: 340px;
+    }
+
+    .craftsmanship {
+        padding: 90px 6%;
+        grid-template-columns: 1fr;
+    }
+
+    .craft-content h2 {
+        font-size: 62px;
+    }
+
+    .craft-visual {
+        height: 350px;
+    }
+
+    .craft-circle {
+        width: 270px;
+        height: 270px;
+    }
+
+    .about {
+        padding: 100px 6%;
+    }
+
+    .about h2 {
+        font-size: 38px;
+    }
+
+    .footer {
+        padding: 25px 6%;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .footer > p {
+        display: none;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 60px;
+    }
+
+    .about h2 {
+        font-size: 32px;
+    }
+}
+
+
+/* =========================================
+   AURELIA — COLLECTION IMAGE CARDS
+========================================= */
+
+.collection-card {
+    overflow: hidden;
+}
+
+.card-visual {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: 16px;
+    background: #e8e2d9;
+    aspect-ratio: 4 / 5;
+}
+
+.card-visual img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.8s cubic-bezier(.2, .7, .2, 1);
+}
+
+.collection-card:hover .card-visual img {
+    transform: scale(1.07);
+}
+
+.card-number {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    z-index: 2;
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+        to bottom,
+        rgba(20, 17, 14, 0.12),
+        transparent 25%,
+        transparent 65%,
+        rgba(20, 17, 14, 0.18)
+    );
+    transition: opacity 0.4s ease;
+}
+
+.collection-card:hover .image-overlay {
+    opacity: 0.65;
+}
+
+.collection-card h3 {
+    margin-top: 22px;
+}
+
+.collection-card p {
+    margin-top: 8px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .card-visual {
+        aspect-ratio: 4 / 5;
+        border-radius: 12px;
+    }
+
+    .card-number {
+        top: 13px;
+        left: 13px;
+    }
+
+}
+
+
+/* =================================
+   AURELIA — CRAFTSMANSHIP
+================================= */
+
+.craftsmanship {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 100px;
+    padding: 150px 8%;
+    overflow: hidden;
+}
+
+.craft-content {
+    max-width: 520px;
+}
+
+.craft-content .eyebrow {
+    color: #c4a77d;
+    letter-spacing: 4px;
+    font-size: 11px;
+    margin-bottom: 28px;
+}
+
+.craft-content h2 {
+    font-size: clamp(45px, 5.5vw, 78px);
+    font-weight: 400;
+    line-height: 1.08;
+    margin-bottom: 30px;
+}
+
+.craft-content h2 span {
+    color: #c4a77d;
+    font-style: italic;
+}
+
+.craft-content > p:not(.eyebrow) {
+    color: #aaa49a;
+    font-size: 14px;
+    line-height: 2;
+    max-width: 420px;
+    margin-bottom: 38px;
+}
+
+.craft-visual {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.craft-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+}
+
+.craft-visual:hover .craft-image {
+    transform: scale(1.06);
+}
+
+.craft-circle {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border: 1px solid rgba(196, 167, 125, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.craft-label {
+    position: absolute;
+    bottom: 28px;
+    left: 28px;
+    z-index: 2;
+    color: #f2e8d8;
+    font-size: 10px;
+    letter-spacing: 3px;
+    line-height: 1.8;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .craftsmanship {
+        gap: 50px;
+        padding: 100px 6%;
+    }
+
+    .craft-visual {
+        height: 420px;
+    }
+
+    .craft-circle {
+        width: 280px;
+        height: 280px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .craftsmanship {
+        grid-template-columns: 1fr;
+        gap: 45px;
+        padding: 85px 7%;
+    }
+
+    .craft-content h2 {
+        font-size: 48px;
+    }
+
+    .craft-visual {
+        height: 380px;
+    }
+
+    .craft-circle {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+/* HERO — SOFT LUXURY SPOTLIGHT */
+
+.hero-3d {
+    isolation: isolate;
+}
+
+.hero-3d::before {
+    content: "";
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        circle,
+        rgba(181, 126, 55, 0.13) 0%,
+        rgba(181, 126, 55, 0.05) 38%,
+        transparent 72%
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ==========================================
+   CRAFTSMANSHIP — CINEMATIC REVEAL
+========================================== */
+
+.craft-content,
+.craft-visual {
+    opacity: 0;
+    transition:
+        opacity 1s ease,
+        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.craft-content {
+    transform: translateX(-45px);
+}
+
+.craft-visual {
+    transform: translateX(45px) scale(0.96);
+}
+
+.craftsmanship.is-visible .craft-content,
+.craftsmanship.is-visible .craft-visual {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+/* Staggered text reveal */
+
+.craft-content .eyebrow {
+    transition-delay: 0.1s;
+}
+
+.craft-content h2 {
+    transition-delay: 0.25s;
+}
+
+.craft-content > p:not(.eyebrow) {
+    transition-delay: 0.4s;
+}
+
+.craft-content .discover-btn {
+    transition-delay: 0.55s;
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    .craft-content,
+    .craft-visual {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ==========================================
+   AURELIA — COLLECTION REVEAL
+========================================== */
+
+.collection-card {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.4s ease;
+}
+
+.collection.is-visible .collection-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.collection.is-visible .collection-card:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.collection.is-visible .collection-card:nth-child(2) {
+    transition-delay: 0.25s;
+}
+
+.collection.is-visible .collection-card:nth-child(3) {
+    transition-delay: 0.4s;
+}
+
+/* Card hover */
+
+.collection-card:hover {
+    transform: translateY(-8px);
+}
+
+/* Image zoom */
+
+.collection-card .card-visual img {
+    transition: transform 0.7s ease;
+}
+
+.collection-card:hover .card-visual img {
+    transform: scale(1.06);
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    .collection-card,
+    .collection-card .card-visual img {
+        transition: none;
+        transform: none;
+    }
+}
+
+
+/* ==========================================
+   AURELIA — OUR STORY VALUES
+========================================== */
+
+.about-divider {
+    width: 70px;
+    height: 1px;
+    background: rgba(192, 161, 108, 0.65);
+    margin: 55px auto 40px;
+}
+
+.about-values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.about-value {
+    padding: 25px 18px;
+    border-right: 1px solid rgba(192, 161, 108, 0.15);
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease,
+        background 0.4s ease;
+}
+
+.about-value:last-child {
+    border-right: none;
+}
+
+.about.is-visible .about-value {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about.is-visible .about-value:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.about.is-visible .about-value:nth-child(2) {
+    transition-delay: 0.25s;
+}
+
+.about.is-visible .about-value:nth-child(3) {
+    transition-delay: 0.4s;
+}
+
+.about-value > span {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.about-value h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin: 18px 0 12px;
+    color: var(--white);
+}
+
+.about-value p {
+    color: #a9a196;
+    font-size: 11px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.about-value:hover {
+    background: rgba(192, 161, 108, 0.025);
+}
+
+/* Mobile layout */
+
+@media (max-width: 600px) {
+
+    .about-divider {
+        margin: 40px auto 25px;
+    }
+
+    .about-values {
+        grid-template-columns: 1fr;
+    }
+
+    .about-value {
+        border-right: none;
+        border-bottom: 1px solid rgba(192, 161, 108, 0.15);
+        padding: 22px 10px;
+    }
+
+    .about-value:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .about-value {
+        transition: none;
+        transform: none;
+    }
+}
+
+
+/* ==========================================
+   AURELIA — PREMIUM FOOTER
+========================================== */
+
+.footer {
+    padding: 55px 7% 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    border-top: 1px solid rgba(192, 161, 108, 0.2);
+    background: #262521;
+}
+
+.footer-brand .logo {
+    display: inline-block;
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.footer-brand p {
+    color: #a89a85;
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 24px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-links a {
+    color: #a9a196;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-copy {
+    color: #82796c;
+    font-size: 9px;
+    letter-spacing: 2px;
+    align-self: flex-end;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .footer {
+        padding: 40px 7% 25px;
+        gap: 25px;
+    }
+
+    .footer-links {
+        gap: 18px;
+    }
+
+    .footer-links a {
+        font-size: 9px;
+    }
+}
